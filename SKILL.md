@@ -37,13 +37,15 @@ Never just output the report as chat text — always produce a downloadable file
 
 ---
 
-## The Pipeline (6 Steps)
+## The Pipeline (8 Steps)
 
 Every research report follows this pipeline. Depending on user request, you may execute the
 full pipeline or focus on specific steps. Always clarify scope before starting.
 
 ```
 Step 1: Sub-sector Selection (行业筛选)
+  ↓
+Step 1.5: Industry Introduction & Trend Analysis (行业介绍与趋势分析) [NEW]
   ↓
 Step 2: Value Chain Decomposition (产业链拆解)
   ↓
@@ -53,7 +55,11 @@ Step 4: Profit Pool Analysis (利润池分析)
   ↓
 Step 5: Company Screening + Financial Deep Dive (公司筛选 + 财报分析)
   ↓
+Step 5A-Phase 2: Metric Decomposition with Industry-Specific Formulas (财务指标拆解) [UPGRADED]
+  ↓
 Step 6: Quantitative Valuation + Catalysts (定量估值 + 催化剂)
+  ↓
+Step 7: Verification & Quality Assurance (输出验证) [NEW]
 ```
 
 ---
@@ -101,6 +107,97 @@ Use web search to find:
 - Supply/demand dynamics (search: "[sub-sector] supply shortage bottleneck")
 - Policy catalysts (search: "[sub-sector] policy regulation 2025 2026")
 - Concentration data (search: "[sub-sector] market share top companies")
+
+---
+
+## Step 1.5: Industry Introduction & Trend Analysis (行业介绍与趋势分析) [NEW]
+
+Goal: Provide readers with a comprehensive industry primer before diving into quantitative
+analysis. This section gives context that makes all subsequent analysis meaningful — especially
+for readers unfamiliar with the sub-sector.
+
+This step is where the report transforms from a "data dump" into a readable narrative. Many
+readers (including PMs and allocators) skim the industry overview first to decide whether
+the rest is worth reading. Make it compelling, factual, and structured.
+
+### 1.5A. Industry Definition & Scope (行业定义与范围)
+
+Clearly define:
+- **What the industry is**: Core products/services, end markets, use cases
+- **Industry boundary**: What's included and explicitly excluded from this analysis
+- **Industry lifecycle stage**: Nascent → Growth → Mature → Decline (with evidence)
+- **Market size**: Current TAM and projected TAM (3–5 year horizon), with source citations
+
+### 1.5B. Industry Evolution & Key Milestones (行业发展沿革)
+
+Provide a brief timeline (5–10 key events) showing how the industry reached its current state:
+- Foundational technology breakthroughs
+- Regulatory milestones (approvals, policy shifts)
+- Landmark M&A or IPO events
+- Demand inflection points
+
+Format as a concise timeline table:
+```
+| Year/Period | Event | Significance |
+|------------|-------|-------------|
+| 2015 | ... | ... |
+| 2020 | ... | ... |
+| 2024 | ... | ... |
+```
+
+### 1.5C. Trend Analysis (趋势分析) — The Core of This Step
+
+Analyze **3–5 structural trends** shaping the industry over the next 3–5 years. For each trend:
+
+```
+#### Trend [N]: [Title]
+- **Description**: What is happening and why
+- **Evidence**: Quantitative data points (growth rates, adoption metrics, policy commitments)
+- **Beneficiaries**: Which companies/nodes in the value chain benefit most
+- **Risks/Counter-trends**: What could derail or slow this trend
+- **Source triangulation**: Cross-reference at least 2 sources (see below)
+```
+
+### 1.5D. Leveraging Existing Research & Earnings Calls (借力已有研报与财报)
+
+This is the key differentiator of Step 1.5 — rather than relying solely on your own synthesis,
+actively mine existing professional analysis for industry-level insights:
+
+**Source Priority for Industry Trends**:
+1. **Company 10-K "Industry Overview" sections** (★★★): Large-cap companies in the sector
+   often have excellent industry descriptions in their annual filings. Search for:
+   - "[largest company in sector] 10-K industry overview"
+   - "[company] annual report industry trends"
+   These are audited filings and provide the most reliable industry framing.
+
+2. **Earnings call transcripts — management commentary** (★★☆): CEOs and CFOs often discuss
+   industry-level trends in their prepared remarks. Search for:
+   - "[company] earnings call transcript [quarter] industry outlook"
+   - "[company] CEO letter shareholders industry"
+   Extract: TAM estimates management cites, demand signals they reference, competitive
+   dynamics they describe.
+
+3. **Sell-side initiation reports & industry reports** (★★☆): These often contain the best
+   structured industry overviews. Search for:
+   - "[sub-sector] industry report [year]"
+   - "[sub-sector] initiation coverage [bank name]"
+   - "[sub-sector] outlook [year]" site:mckinsey.com OR site:bcg.com OR site:bain.com
+
+4. **Government / regulatory body publications** (★★★): For regulated industries:
+   - "[regulator] [industry] annual report" (e.g., "EIA energy outlook", "FDA approval trends")
+
+**Cross-referencing rule**: For every major trend claim, cite at least 2 independent sources.
+If Company A's 10-K says "market growing at 20% CAGR" and an industry report says "15% CAGR",
+note the discrepancy and explain which estimate you weight more heavily and why.
+
+### Web Search Strategy for Step 1.5
+- "[largest company] 10-K annual report industry overview [year]"
+- "[company] earnings call industry trends outlook"
+- "[sub-sector] industry overview market structure"
+- "[sub-sector] technology trends [year]"
+- "[sub-sector] regulatory landscape changes"
+- "[consulting firm] [sub-sector] report" (McKinsey, BCG, Deloitte, Gartner, IDC)
+- "[government agency] [industry] outlook report"
 
 ---
 
@@ -246,6 +343,12 @@ analyze where each company has leverage (opportunity) or exposure (risk).
 
 ##### Decomposition Trees (apply relevant ones per industry)
 
+The decomposition trees below are the analytical backbone of this step. The goal is to break
+every headline metric down to its atomic business drivers, so you can identify exactly WHERE
+a company has leverage (opportunity) or exposure (risk). Think of it as "revenue forensics."
+
+**General Decomposition Framework** (applies to all industries):
+
 ```
 Revenue Decomposition:
   Revenue = Volume × ASP × Product Mix Weight
@@ -271,6 +374,118 @@ FCF Decomposition:
     → Working capital: DSO (receivables), DIO (inventory), DPO (payables)
     → Quality check: FCF/Net Income ratio — divergence signals earnings quality issues
 ```
+
+**Industry-Specific Decomposition Formulas** (UPGRADED — select and apply ALL that match):
+
+```
+━━━ Digital Advertising (Google, Meta, TTD, APP, etc.) ━━━
+Ad Revenue = Impressions × eCPM (effective cost per mille)
+  → Impressions = DAU × Sessions/User × Ads/Session
+    → DAU drivers: user acquisition spend, organic growth, platform stickiness
+    → Sessions/User: engagement depth, content quality, algorithmic feed
+    → Ads/Session (ad load): monetization intensity — higher = more revenue but engagement risk
+  → eCPM = CTR × CPC (or CPM bid level)
+    → CTR: ad relevance, targeting precision, creative quality
+    → CPC/CPM: advertiser demand, auction density, seasonality (Q4 > Q1)
+  → Mix: search ads vs. feed ads vs. video ads vs. shopping ads (different eCPMs)
+  → Attribution: signal loss from privacy changes (ATT, cookie deprecation) → eCPM pressure
+
+━━━ SaaS / Cloud (MSFT, CRM, SNOW, etc.) ━━━
+ARR = Beginning ARR + New ARR + Expansion ARR - Churn
+  → New ARR = New Customers × Average Contract Value (ACV)
+  → Expansion ARR = Existing Customers × Upsell Rate × Net Revenue Retention (NRR)
+  → Churn = Customers Lost × Their ACV
+  → Unit Economics: LTV = ARPU × Gross Margin × (1 / Churn Rate)
+                     CAC = S&M Spend / New Customers
+                     LTV/CAC > 3x = healthy
+                     CAC Payback < 18 months = efficient
+  → Rule of 40: Revenue Growth % + FCF Margin % (>40% = elite)
+
+━━━ Semiconductors (NVDA, AMD, AVGO, ASML, etc.) ━━━
+Revenue = Wafer Starts × Die Yield × ASP per Die × Mix
+  → Wafer Starts: fab utilization rate, capacity additions
+  → Die Yield: process maturity, defect density (learning curve)
+  → ASP per Die: node migration (smaller = higher price), product mix (data center > consumer)
+  → Mix: Data Center vs. Gaming vs. Auto vs. Edge (each has different margin)
+  → Inventory Signal: Inventory Days > 100 = demand concern; Book-to-Bill < 1.0 = order weakness
+
+━━━ E-commerce / Marketplace (AMZN, BABA, PDD, MELI, etc.) ━━━
+GMV = Active Buyers × Orders/Buyer × Average Order Value (AOV)
+  → Active Buyers: user acquisition, retention rate, market penetration
+  → Orders/Buyer: purchase frequency, category expansion, subscription programs
+  → AOV: product mix shift, inflation pass-through, cross-sell effectiveness
+Take Rate = Platform Revenue / GMV
+  → Commission rates, advertising revenue on platform, fulfillment fees
+  → Marketplace vs. 1P mix (1P = lower margin, higher GMV control)
+
+━━━ Streaming / Content (NFLX, DIS+, SPOT, etc.) ━━━
+Revenue = Subscribers × ARPU
+  → Subscribers: net adds = gross adds - churn
+    → Gross adds: content slate quality, marketing spend, market expansion
+    → Churn: content engagement, price sensitivity, competitive intensity
+  → ARPU: tier mix (ad-supported vs. premium), price increases, bundling
+  → Content ROI: Content Spend / Net Subscriber Adds = cost per incremental sub
+  → Engagement: Viewing Hours / Subscriber (leading indicator of churn)
+
+━━━ Pharmaceuticals / Biotech (LLY, NVO, ABBV, MRNA, etc.) ━━━
+Drug Revenue = Patients on Therapy × Price per Treatment × Duration
+  → Patients = Diagnosis Rate × Treatment Rate × Market Share
+    → Diagnosis Rate: disease awareness, screening guidelines
+    → Treatment Rate: insurance coverage, formulary position, physician adoption
+    → Market Share: efficacy data, safety profile, sales force, patient preference
+  → Price: list price vs. net price (after rebates/discounts), Part D redesign impact
+  → Duration: chronic vs. acute, compliance/adherence rates
+  → Pipeline Value: Probability-adjusted NPV of Phase 1/2/3 assets
+
+━━━ Medical Devices (ISRG, ABT, SYK, MDT, etc.) ━━━
+Revenue = Installed Base × Procedures/System × Consumables/Procedure × Price
+  → Installed Base: new system placements, replacement cycle, geographic expansion
+  → Procedures/System: utilization rate, new indication approvals, surgeon training
+  → Consumables: razor-and-blade model, attach rate per procedure
+  → Price: ASP trends, reimbursement rates, competitive pricing pressure
+
+━━━ Energy / Utilities (NEE, CEG, VST, uranium miners, etc.) ━━━
+Revenue = Generation Capacity (MW) × Capacity Factor × Realized Price ($/MWh)
+  → Capacity: new builds, acquisitions, retirements
+  → Capacity Factor: technology reliability, weather, maintenance schedules
+  → Realized Price: PPA contract rates, merchant exposure, REC/capacity payments
+  → For Miners: Revenue = Production Volume × Realized Commodity Price
+    → Production: mine ramp, grades, recovery rates
+    → Price: spot vs. contract mix, long-term contract repricing cycles
+
+━━━ Fintech / Payments (V, MA, SQ, PYPL, etc.) ━━━
+Net Revenue = Payment Volume × Take Rate
+  → Payment Volume = Transactions × Average Transaction Size
+  → Take Rate = (Gross Revenue - Network Fees) / Payment Volume
+  → Cross-border vs. domestic mix (cross-border = 2–3x higher take rate)
+  → Value-Added Services revenue: risk management, data analytics, BNPL
+```
+
+**How to use these formulas**: For each company under analysis:
+1. Identify which decomposition tree(s) apply (a company may span multiple — e.g., Amazon
+   needs both e-commerce and cloud SaaS trees)
+2. Populate each variable with actual data from earnings reports, 10-Ks, and earnings calls
+3. Calculate the YoY change contribution of each variable (what drove the headline change?)
+4. Map each variable to opportunity or risk (see matrix below)
+
+##### Earnings-Driven Opportunity/Risk Synthesis (与财报信息结合) [NEW]
+
+After decomposing metrics with the formulas above, **cross-reference with actual earnings
+data** to produce actionable opportunity/risk insights. This is where raw decomposition
+becomes investment-grade analysis.
+
+**Process**:
+1. **Pull management commentary on each driver**: Search "[company] earnings call transcript"
+   and find what management says about each decomposition variable (e.g., "We expect eCPM
+   to improve 10% as advertiser demand recovers")
+2. **Compare management's narrative vs. the data**: If management says "strong demand" but
+   Volume growth is decelerating, that's a red flag worth highlighting
+3. **Identify the 1–2 variables with the highest sensitivity**: Which decomposition factor,
+   if it moves ±10%, would have the biggest impact on the headline metric? That's where the
+   investment case lives (or dies)
+4. **Link to catalysts**: Each opportunity/risk should map to a specific upcoming event
+   (earnings date, product launch, regulatory decision, contract renewal) that could
+   crystallize it
 
 ##### Opportunity/Risk Attribution Matrix (Required Output)
 
@@ -496,6 +711,141 @@ Interpretation:
 
 ---
 
+## Step 7: Verification & Quality Assurance (输出验证) [NEW]
+
+After generating the .docx report, run a mandatory verification pass before presenting the
+file to the user. This step exists because long, multi-step research reports are prone to
+subtle output bugs — garbled text, blank sections, broken tables, encoding issues — that
+undermine the report's credibility even when the analysis is sound.
+
+Think of this as the "QA editor" who reads the final galley proof before publication. A
+brilliant analysis wrapped in a buggy document is worse than a mediocre analysis in a clean
+one, because the bugs destroy reader trust.
+
+### 7A. Automated Checks (run as a script)
+
+After saving the .docx file, run the following verification checks programmatically:
+
+```python
+# Verification checklist — run against the generated .docx
+# Use python-docx to read and validate
+
+import docx
+import re
+
+def verify_report(filepath):
+    doc = docx.Document(filepath)
+    issues = []
+
+    full_text = []
+    for para in doc.paragraphs:
+        full_text.append(para.text)
+    text = "\n".join(full_text)
+
+    # 1. Garbled text / encoding issues
+    #    Look for common signs: sequences of ? or □, mojibake patterns,
+    #    isolated non-CJK non-ASCII control characters
+    garbled_patterns = [
+        r'[\ufffd]{2,}',           # Multiple replacement characters
+        r'[□■]{2,}',              # Box characters (font substitution failure)
+        r'[\x00-\x08\x0b\x0c\x0e-\x1f]',  # Control characters that shouldn't be in text
+    ]
+    for pattern in garbled_patterns:
+        matches = re.findall(pattern, text)
+        if matches:
+            issues.append(f"ENCODING: Found garbled text pattern: {matches[:3]}")
+
+    # 2. Blank sections — any heading followed immediately by another heading
+    #    (no content between them) or by nothing
+    headings = [(i, para.text, para.style.name)
+                for i, para in enumerate(doc.paragraphs)
+                if para.style.name.startswith('Heading')]
+    for idx, (para_idx, heading_text, style) in enumerate(headings):
+        if idx + 1 < len(headings):
+            next_para_idx = headings[idx + 1][0]
+            content_between = [doc.paragraphs[j].text.strip()
+                             for j in range(para_idx + 1, next_para_idx)
+                             if doc.paragraphs[j].text.strip()]
+            if not content_between:
+                issues.append(f"BLANK SECTION: '{heading_text}' has no content before next heading")
+
+    # 3. Broken tables — tables with empty cells where data is expected
+    for t_idx, table in enumerate(doc.tables):
+        for r_idx, row in enumerate(table.rows):
+            empty_cells = sum(1 for cell in row.cells if not cell.text.strip())
+            total_cells = len(row.cells)
+            if r_idx > 0 and empty_cells == total_cells:
+                issues.append(f"TABLE #{t_idx+1}: Row {r_idx+1} is completely empty")
+            elif r_idx > 0 and empty_cells > total_cells * 0.5:
+                issues.append(f"TABLE #{t_idx+1}: Row {r_idx+1} has {empty_cells}/{total_cells} empty cells")
+
+    # 4. Placeholder text left in — template markers not filled
+    placeholders = re.findall(r'\[(?:TODO|TBD|PLACEHOLDER|INSERT|XXX|___)\]', text, re.IGNORECASE)
+    placeholders += re.findall(r'\$____', text)
+    placeholders += re.findall(r'____%', text)
+    if placeholders:
+        issues.append(f"PLACEHOLDER: Found unfilled placeholders: {placeholders[:5]}")
+
+    # 5. Citation integrity — check that confidence markers are present
+    citations = re.findall(r'\[Source:.*?\]', text)
+    star_citations = re.findall(r'★', text)
+    if len(text) > 5000 and len(citations) < 5:
+        issues.append(f"CITATION: Only {len(citations)} citations found in a {len(text)}-char report — likely under-cited")
+
+    # 6. Section completeness — check that all required sections exist
+    required_sections = [
+        'Executive Summary', 'Industry Overview', 'Value Chain',
+        'Competitive Landscape', 'Profit Pool', 'Company',
+        'Valuation', 'Investment Conclusion', 'Sources'
+    ]
+    for section in required_sections:
+        if section.lower() not in text.lower():
+            issues.append(f"MISSING SECTION: '{section}' not found in report")
+
+    # 7. Numeric sanity — percentages > 1000%, negative market caps, etc.
+    absurd_pcts = re.findall(r'(\d{4,})%', text)
+    if absurd_pcts:
+        issues.append(f"NUMERIC: Suspiciously large percentages found: {absurd_pcts[:3]}%")
+
+    return issues
+```
+
+### 7B. Manual Spot Checks (performed by Claude after automated checks)
+
+After running the script, also review the generated file for:
+
+1. **Table alignment**: Open and verify that multi-column tables render properly — columns
+   aligned, headers match data, no merged-cell artifacts
+2. **Chinese + English mixing**: Ensure no encoding breakage at language-switch boundaries
+   (common when mixing 中文 and English financial terms in the same paragraph)
+3. **Number formatting consistency**: All dollar amounts use same format (e.g., $XX.XB
+   throughout, not mixing $XX billion and $XXB); percentages use consistent decimal places
+4. **Cross-reference validity**: If the report says "as shown in the Profit Pool table
+   above," verify that table actually exists above that reference
+5. **Opportunity/Risk matrix completeness**: Every company in the analysis should have at
+   least 3 rows in the attribution matrix; no company should be listed in the executive
+   summary but missing from the deep dive
+
+### 7C. Issue Resolution Protocol
+
+If the verification finds issues:
+- **ENCODING / GARBLED**: Re-generate the affected section, explicitly handling encoding
+  (use UTF-8 throughout, avoid copying raw bytes from web search results)
+- **BLANK SECTION**: Go back to the relevant pipeline step, re-run web search if needed,
+  and fill the section. Never ship a blank section — if data is genuinely unavailable,
+  write "Data not publicly available as of [date]. This section will be updated when
+  [trigger event] occurs."
+- **BROKEN TABLE**: Rebuild the table with explicit cell values; verify column count matches
+  header count before inserting
+- **PLACEHOLDER**: Fill with actual data or remove the placeholder with a "N/A — [reason]" note
+- **CITATION**: Go back through each major claim and add missing citations
+
+After fixing issues, re-run the automated checks to confirm all issues are resolved.
+Only present the file to the user after it passes verification with zero critical issues
+(ENCODING, BLANK SECTION, BROKEN TABLE all count as critical).
+
+---
+
 ## Report Output Format
 
 Generate the report as a **`.docx` file** using the docx skill. Save to
@@ -516,6 +866,13 @@ Structure:
 - Industry scoring table (4-factor model)
 - Demand / supply / structure analysis
 
+## 1.5. Industry Introduction & Trend Analysis [NEW]
+- Industry definition, scope, and lifecycle stage
+- Market size (current and projected TAM)
+- Evolution timeline (5–10 key milestones)
+- 3–5 structural trends with evidence from 10-Ks, earnings calls, and industry reports
+- Source triangulation showing cross-referenced data points
+
 ## 2. Value Chain Analysis
 - Value chain map with margin estimates
 
@@ -527,9 +884,11 @@ Structure:
 - Profit distribution across value chain
 
 ## 5. Company Deep Dives (Financial Statement Analysis)
-- 5A. Financial deep dive with metric decomposition trees
-- 5A. Opportunity/Risk attribution matrix per company
-- 5A. Root cause tracing for top metric movements
+- 5A-Phase 1. Financial data gathering (income statement, balance sheet, cash flow, KPIs)
+- 5A-Phase 2. Industry-specific metric decomposition trees (e.g., Ad Revenue = Impressions × eCPM)
+- 5A-Phase 2. Earnings-driven opportunity/risk synthesis per decomposition variable
+- 5A-Phase 2. Opportunity/Risk attribution matrix per company
+- 5A-Phase 2. Root cause tracing for top metric movements
 - 5B. Cross-company financial comparison table
 - 5C–5D. Competitive advantage + management quality
 - 5E. ETF options table
@@ -551,6 +910,7 @@ Structure:
 
 ## Appendix
 - Methodology notes, disclaimer
+- Verification report summary (issues found and resolved)
 ```
 
 ---
@@ -629,6 +989,8 @@ sources grouped by confidence level:
 6. **Language** — Default Chinese with English financial terms. Full English if requested.
 7. **Bias toward action** — Clear conclusion: what to buy, watch, avoid.
 8. **Always save output** — Reports must be saved as files, never just chat text.
+9. **Decompose to invest** — Break every headline metric down to atomic drivers using industry-specific formulas. The investment thesis lives in the driver variables, not the headline number.
+10. **Verify before shipping** — Every report must pass automated + manual QA checks (Step 7) before being presented to the user. Zero tolerance for garbled text, blank sections, or broken tables.
 
 ---
 
